@@ -15,7 +15,8 @@
         <div><img class="logo" src="./images/logo.jpg" alt="" /></div>
         <div class="flex-ai-center">
           <button class="button start-btn">Iniciar novo jogo</button>
-          <button class="button restart-btn">Revanche!</button>          
+          <button class="button restart-btn hidden">Revanche!</button>
+          <button class="button shoot-btn hidden">Chutar!</button>             
         </div>
       </header>
       <section class="game-screen">
@@ -45,10 +46,13 @@
             <button class="button next-penalti-btn hidden">
               Bater próximo penalti
             </button>
+            <button class="button next-player-btn hidden">
+              Próximo Player!
+            </button>
             <section class="images-display hidden"></section>
           </div>
 
-            <div class="goalkeeper-progress-bar" role="progressbar" aria-label="Basic example" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+            <div class="goalkeeper-progress-bar hidden" role="progressbar" aria-label="Basic example" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
             <img src="./images/goalkeeper.jpg" alt=""></div>
 
           <div class="target"></div>

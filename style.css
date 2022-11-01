@@ -24,6 +24,10 @@ main {
     flex-direction: column;
 }
 
+.flex-jc-flex-start {
+    justify-content: flex-start;
+}
+
 .flex-jc-center {
     display: flex;
     justify-content: center;
@@ -65,8 +69,8 @@ button:hover {
     width:64.6rem;
     border:0;
     display: flex;
-   /* justify-content: center;
-    align-items: center;  */
+    justify-content: center;
+    align-items: center;
 }
 
 .target {
@@ -110,11 +114,6 @@ button:hover {
 
 .images-display {
     background-size: cover;
-}
-
-.hidden {
-    display: none;
-    transition: display 0.5s;
 }
 
 .ball-progress {
@@ -172,5 +171,9 @@ button:hover {
     margin:0;
 }
 
+.hidden {
+    display: none;
+    transition: display 0.5s;
+}
 
 
