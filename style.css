@@ -1,0 +1,176 @@
+* {
+    font-size: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    margin: 0.2rem
+}
+
+html,body{
+    border:0;
+}
+
+main {
+    width:80rem;
+    margin: 0 auto;
+}
+
+.flex-ai-center {
+    display: flex;
+    align-items: center;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-jc-center {
+    display: flex;
+    justify-content: center;
+}
+
+.top-header{
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.logo {
+    height: 6rem;
+}
+
+button {
+    line-height: 2rem;
+    padding:1.5rem 3rem;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+}
+
+button:hover {
+    background-color: rgb(185, 185, 185);
+    border: 0;
+}
+
+.game-screen{
+    height:50rem;
+    max-height:80vh;
+    padding:0;    
+}
+
+.goal {
+    margin:2rem auto;
+    background-image: url('./images/trave.png');
+    background-size: cover;
+    height: 42rem;
+    width:64.6rem;
+    border:0;
+    display: flex;
+   /* justify-content: center;
+    align-items: center;  */
+}
+
+.target {
+    margin:0;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-image:url('./images/bola.png');
+    background-size: cover;
+    position:relative;
+    display:none;
+}
+
+.instructions-container, .instructions-container > p {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.players-container label{
+    font-size: 2rem;
+    padding:0.5rem 2rem 0;
+}
+
+.player-names-container input[type="button"] {
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.level-container label{
+    font-size: 1.5rem;
+    padding:.5rem 2rem 0;
+}
+
+.panel {
+    font-size: 2rem;
+    background-color: rgb(185, 185, 185);
+    border-radius: 1rem;
+    padding:2rem;
+    opacity: .8;
+}
+
+.images-display {
+    background-size: cover;
+}
+
+.hidden {
+    display: none;
+    transition: display 0.5s;
+}
+
+.ball-progress {
+
+        display: flex;
+        overflow: hidden;
+        font-size: .75rem;
+        background-color: #fff;
+        border-radius: 0.25rem;
+        margin:0;
+
+}
+
+.ball-progress-bar {
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    transition: width 0.05s;
+    margin:0;
+
+}
+
+.goalkeeper-progress {
+    height: fit-content;
+    display: flex;
+    overflow: hidden;
+    font-size: .75rem;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    margin:0;
+}
+.goalkeeper-progress-bar {
+    background-color: rgb(255,255,255,0);
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    transition: width 0.05s;
+    margin:0;
+}
+
+.ball-progress-bar img {
+    height:4rem;
+    margin:0;
+
+}
+
+.goalkeeper-progress-bar img {
+    height: 30rem;
+    margin:0;
+}
+
+
+
