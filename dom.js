@@ -62,6 +62,7 @@ class Match {
   resetMatch() {
     this.numberOfRounds = 3;
     this.currentRound = 1;
+    this.wins = { player1: 0, player2: 0 };
     this.whoIsShooting = "player2";
   }
 }
@@ -75,6 +76,9 @@ let moveGoalkeeperIdSetInverval;
 let computerPlayer = new Player("Máquina de fazer gols");
 let numberOfRounds = 3;
 
+let $score = document.querySelector('.score')
+let $player1Score = document.querySelector(".player1-score")
+let $player2Score = document.querySelector(".player2-score")
 let $startBtn = document.querySelector(".start-btn");
 let $restartBtn = document.querySelector(".restart-btn");
 let $shootBtn = document.querySelector(".shoot-btn");
@@ -115,6 +119,7 @@ function addClickEventOnStartBtn() {
     $nextPenaltiBtn.classList.add("hidden");
     $playerNamesContainer.classList.add("hidden");
     match.resetMatch();
+    $score.classList.add('hidden');
   });
 }
 
@@ -207,7 +212,6 @@ function computerShoot() {
 }
 
 function showTargetForATime(duration) {
-  $target.style.display = "block";
   window.idSetTimeout = setTimeout(() => {
     hideTarget();
     match.whoIsShooting == "player1" ? player1.setGoal() : player2.setGoal();
@@ -248,8 +252,8 @@ function inicializePlayerShoot() {
 }
 
 function moveBall() {
-  // $ballProgressBar.ariaValueNow = 5;
-  //     $ballProgressBar.style.width = '5%';
+  $ballProgressBar.ariaValueNow = 5;
+  $ballProgressBar.style.width = '5%';
   let reverse = false;
   moveBallIdSetInverval = setInterval(function () {
     if (reverse) {
@@ -278,8 +282,8 @@ function moveBall() {
 
 function moveGoalkeeper() {
   $goal.style.justifyContent = "flex-start";
-  // $goalkeeperProgressBar.ariaValueNow = 30;
-  //     $goalkeeperProgressBar.style.width = '30%';
+  $goalkeeperProgressBar.ariaValueNow = 30;
+  $goalkeeperProgressBar.style.width = '30%';
   let reverse = false;
   moveGoalkeeperIdSetInverval = setInterval(function () {
     if (reverse) {
@@ -303,10 +307,10 @@ function moveGoalkeeper() {
     ) {
       reverse = !reverse;
     }
-  }, 40);
+  }, 30);
 }
 
-function checkIfWasGoal() {
+function checkShoot() {
   if (
     parseFloat($ballProgressBar.style.width) >= 15 &&
     parseFloat($ballProgressBar.style.width) <= 90
@@ -318,26 +322,24 @@ function checkIfWasGoal() {
       match.whoIsShooting == "player1"
         ? player1.setPenaltyMissed()
         : player2.setPenaltyMissed();
-        return false;
+        return 'defense';
     } else
       match.whoIsShooting == "player1"
         ? player1.setGoal()
         : player2.setGoal();
-        return true;
+        return 'goal';
   } else
     match.whoIsShooting == "player1"
       ? player1.setPenaltyMissed()
       : player2.setPenaltyMissed();
-      return false;
+      return 'out';
 }
 
 function addClickEventOnShootBtn() {
   $shootBtn.addEventListener("click", function () {
     clearInterval(moveBallIdSetInverval);
     clearInterval(moveGoalkeeperIdSetInverval);
-    if (checkIfWasGoal()) {
-      insertMainImg('goal')
-    } else {insertMainImg('defense');}
+    insertMainImg(checkShoot());
     match.increaseRound();
     
     if(match.currentRound > match.numberOfRounds) {
@@ -357,13 +359,17 @@ function finishGame(){
   $goal.style.justifyContent = "center";
   $restartBtn.classList.remove("hidden")
   $instructions.textContent = getWinner();
+  $player1Score.innerHTML = `<strong>${player1.name}:</strong> ${match.wins.player1}`
+  $player2Score.innerHTML = `<strong>${player2.name}:</strong> ${match.wins.player2}`
+  $score.classList.remove('hidden');
   }
 
   function addClickEventOnRestartBtn() {
     $restartBtn.addEventListener("click", (e) => {
       $restartBtn.classList.add("hidden");
       $instructions.textContent = ''
-      match.resetMatch();
+      match.resetCurrentRound();
+      match.changeWhoIsShooting();
       computerShoot();
     });
   }
@@ -410,11 +416,12 @@ function displayPenaltyInstructions() {
 }
 
 function ramdomPositionForTarget() {
+  $target.style.display = "block";
   $goal.style.display = "block"; //tive que botar block aqui pra nao dar pau na posicao da aleatoria da bola
   $target.style.top = `${
     (Math.random() * ($goal.clientHeight - $target.offsetHeight)) / 10
   }rem`;
-  $target.style.left = `${(Math.random() * $goal.clientWidth) / 10}rem`;
+  $target.style.left = `${(Math.random() * ($goal.clientWidth-60)) / 10}rem`;
 }
 
 function getImg(moment) {

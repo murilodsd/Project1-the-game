@@ -43,6 +43,12 @@ main {
     height: 6rem;
 }
 
+.score {
+    margin:0 2rem;
+}
+.score > p, strong {
+    font-size: 1.4rem;
+}
 button {
     line-height: 2rem;
     padding:1.5rem 3rem;
@@ -87,6 +93,10 @@ button:hover {
 .instructions-container, .instructions-container > p {
     font-size: 4rem;
     font-weight: bold;
+}
+
+.instructions-container > p {
+    text-align: center;
 }
 
 .players-container label{
