@@ -133,6 +133,7 @@ function addClickEventOnStartBtn() {
     $score.classList.add('hidden');
     $instructions.textContent = ''
     $initialinstructions.classList.add('hidden');
+    $restartBtn.classList.add('hidden');
   });
 }
 
