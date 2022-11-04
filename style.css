@@ -95,8 +95,17 @@ button:hover {
     font-weight: bold;
 }
 
+.initial-instructions {
+    text-align: center;
+    background-color: white;
+    font-size: 2rem;
+    border: 0.1rem solid black;
+    border-radius: 1rem;
+}
+
 .instructions-container > p {
     text-align: center;
+
 }
 
 .players-container label{

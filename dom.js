@@ -17,6 +17,7 @@ class Match {
     this.numberOfRounds = 3;
     this.currentRound = 1;
     this.targetDuration;
+    this.goalkeeperSpeed;
     this.numbersOfPlayers;
     this.wins = { player1: 0, player2: 0 };
     this.whoIsShooting = "player2";
@@ -34,15 +35,23 @@ class Match {
         break;
     }
   }
+
+  setGoalkeeperSpeed(level) {
+    switch (level) {
+      case "1":
+        this.goalkeeperSpeed = 30;
+        break;
+      case "2":
+        this.goalkeeperSpeed = 25;
+        break;
+      case "3":
+        this.goalkeeperSpeed = 20;
+        break;
+    }
+  }
   setNumberOfPlayers(numberOfPLayers) {
     this.numberOfPlayers = numberOfPLayers;
   }
-
-  // setPlayers(player1,player2) {
-  //     [...arguments].forEach(function (player, index) {
-  //         match.wins[`player${index}`] = 0;
-  //       });
-  // }
 
   increaseRound() {
     match.currentRound++;
@@ -82,6 +91,7 @@ let $player2Score = document.querySelector(".player2-score")
 let $startBtn = document.querySelector(".start-btn");
 let $restartBtn = document.querySelector(".restart-btn");
 let $shootBtn = document.querySelector(".shoot-btn");
+let $initialinstructions = document.querySelector(".initial-instructions")
 let $target = document.querySelector(".target");
 let $goal = document.querySelector(".goal");
 let $instructions = document.querySelector(".instructions-container p");
@@ -119,7 +129,10 @@ function addClickEventOnStartBtn() {
     $nextPenaltiBtn.classList.add("hidden");
     $playerNamesContainer.classList.add("hidden");
     match.resetMatch();
+    resetInputs();
     $score.classList.add('hidden');
+    $instructions.textContent = ''
+    $initialinstructions.classList.add('hidden');
   });
 }
 
@@ -176,6 +189,7 @@ function addClickEventOnLevel() {
     level.addEventListener("click", (e) => {
       $levelContainer.classList.add("hidden");
       match.setTargetDuration(level.value);
+      match.setGoalkeeperSpeed(level.value);
       computerShoot();
     });
   });
@@ -241,6 +255,7 @@ function addClickNextPlayerBtn() {
     match.resetCurrentRound();
     $nextPlayerBtn.classList.add("hidden");
     $goalkeeperProgressBar.classList.remove("hidden");
+    $ballProgressBar.classList.remove("hidden");
     $shootBtn.classList.remove("hidden");
     inicializePlayerShoot();
   });
@@ -307,7 +322,7 @@ function moveGoalkeeper() {
     ) {
       reverse = !reverse;
     }
-  }, 30);
+  }, match.goalkeeperSpeed);
 }
 
 function checkShoot() {
@@ -356,6 +371,7 @@ function addClickEventOnShootBtn() {
 function finishGame(){
   $shootBtn.classList.add("hidden");
   $goalkeeperProgressBar.classList.add("hidden");
+  $ballProgressBar.classList.add("hidden");
   $goal.style.justifyContent = "center";
   $restartBtn.classList.remove("hidden")
   $instructions.textContent = getWinner();
@@ -440,4 +456,17 @@ function insertMainImg(moment) {
   setTimeout(function () {
     $imagesDisplay.classList.add("hidden");
   }, 2000);
+}
+
+function resetInputs() {
+  $howManyPlayersRadio.forEach(function(element){
+    element.checked = false;
+  });
+  $level.forEach(function(element){
+    element.checked = false;
+  })
+  $playerNamesContainer.querySelectorAll('input[type="text"]').forEach(function(element){
+    element.value = '';
+  })
+
 }

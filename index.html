@@ -26,16 +26,16 @@
       <section class="game-screen">
         <div class="goal">
           <div class="instructions-container">
+            <article class="initial-instructions">O jogo será disputado entre o player e o computador. Para defender o penalti, haverá uma contagem regressiva e, após o término dessa, uma bola será exibida aleatoriamente dentro da área do gol. O usuário deverá clicar na bola com o mouse rapidamente para realizar a defesa. Para bater o penalti, será exibido um goleiro e uma bola que se movimentam horizontalmente, o player deve clicar no botão chutar no momento em que a bola esteja entre as traves e em posição distinta da do goleiro para marcar o gol.</article>
             <p></p>
             <div class="flex-column players-container panel hidden">
               Quantos jogadores?
               <label><input type="radio" name="players" value="1" />1 player</label>
-              <label><input type="radio" name="players" value="2" />2 players</label>
+              <label  class="hidden"><input type="radio" name="players" value="2" />2 players</label>
             </div>
             <div class="flex-column player-names-container panel hidden">
               <label>Nome player 1:<input type="text" name="player1-name"/></label>
-              <label
-                >Nome player 2:<input type="text" name="player2-name"
+              <label>Nome player 2:<input type="text" name="player2-name"
               /></label>
               <input type="button" value="Avançar" />
             </div>
@@ -62,7 +62,7 @@
           <div class="target"></div>
         </div>
         <div class="ball-progress">
-            <div class="ball-progress-bar" role="progressbar" aria-label="Basic example" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
+            <div class="ball-progress-bar hidden" role="progressbar" aria-label="Basic example" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100">
             <img src="./images/bola.png" alt=""></div>
           </div>
       </section>
